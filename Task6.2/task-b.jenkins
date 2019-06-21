@@ -3,20 +3,22 @@ properties([disableConcurrentBuilds()])
 
 pipeline {
     agent {
-        label: 'master'
+        label 'master'
     }
     options {
         timestamps()
     }
-    
-    stages("api-test") {
-        steps {
-            echo "api-test"
+
+    stages {
+        stage("api-test") {
+            steps {
+                echo "api-test"
+            }
         }
-    }
-    stages("ui-test") {
-        steps {
-            echo "ui-test"
+        stage("ui-test") {
+            steps {
+                echo "ui-test"
+            }
         }
     }
 }
