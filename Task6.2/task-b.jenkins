@@ -1,0 +1,22 @@
+#!groovy
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent {
+        label: 'master'
+    }
+    options {
+        timestamps()
+    }
+    
+    stages("api-test") {
+        steps {
+            echo "api-test"
+        }
+    }
+    stages("ui-test") {
+        steps {
+            echo "ui-test"
+        }
+    }
+}
