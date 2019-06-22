@@ -13,6 +13,9 @@ pipeline {
         stage("api-test") {
             steps {
                 echo "api-test"
+                dir('Task4') {
+                    sh 'docker build . '
+                }
             }
         }
         stage("ui-test") {
