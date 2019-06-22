@@ -4,6 +4,9 @@ import org.junit.Before
 import org.junit.Test
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
+
+
 
 class TestIndexPageForBus {
     private lateinit var driver: WebDriver
@@ -12,14 +15,16 @@ class TestIndexPageForBus {
 
     @Before
     fun init() {
-        val path = System.getProperty("user.home")
-
         System.setProperty(
             "webdriver.chrome.driver",
-            "$path//libs//chromedriver.exe"
+            "/usr/bin/chromedriver"
         )
 
-        driver = ChromeDriver()
+        val chromeOptions = ChromeOptions()
+        chromeOptions.addArguments("--headless")
+        chromeOptions.addArguments("--no-sandbox")
+
+        driver = ChromeDriver(chromeOptions)
         driver.get("https://rasp.yandex.ru/")
 
         indexPage = IndexPage(driver)

@@ -21,6 +21,9 @@ pipeline {
         stage("ui-test") {
             steps {
                 echo "ui-test"
+                dir('Task5') {
+                    sh 'docker build . '
+                }
             }
         }
     }

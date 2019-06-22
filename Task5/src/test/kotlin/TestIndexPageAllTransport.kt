@@ -5,6 +5,7 @@ import org.junit.Test
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
+import org.openqa.selenium.chrome.ChromeOptions
 
 class TestIndexPageAllTransport {
     private lateinit var driver: WebDriver
@@ -13,14 +14,16 @@ class TestIndexPageAllTransport {
 
     @Before
     fun setup() {
-        val path = System.getProperty("user.home")
-
         System.setProperty(
             "webdriver.chrome.driver",
-            "$path//libs//chromedriver.exe"
+            "/usr/bin/chromedriver"
         )
 
-        driver = ChromeDriver()
+        val chromeOptions = ChromeOptions()
+        chromeOptions.addArguments("--headless")
+        chromeOptions.addArguments("--no-sandbox")
+
+        driver = ChromeDriver(chromeOptions)
         driver.get("https://rasp.yandex.ru/")
 
         indexPage = IndexPage(driver)
@@ -79,7 +82,7 @@ class TestIndexPageAllTransport {
     fun test4() {
         val allSegmentIcon = indexPageResult.allSearchSegment()
 
-        Assert.assertEquals(5, allSegmentIcon.size)
+        Assert.assertEquals(3, allSegmentIcon.size)
 
     }
 
